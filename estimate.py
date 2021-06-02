@@ -1,5 +1,32 @@
 import math
 import unittest
+import random
+def wallis(no1):	#no1 is number of iterations
+	pdt = 1
+	for i in range (1,no1+1):
+		t = 4*i*i
+		pdt = pdt * (t/(t-1))
+	pdt = pdt * 2
+	return pdt
+
+
+
+
+def monte_carlo(no2):	#no2 is total number of darts & also number of iteration
+	n = 0
+	for j in range (1,no2+1):
+		x = random.random()
+		y = random.random()
+		r = math.sqrt( x**2 + y**2 )
+		if r < 1:
+			n = n + 1
+	pi_val = 4 * (n/no2)
+	return pi_val
+
+no1 = int(input("Enter number of iterations: "))
+print(wallis(no1))
+no2 = int(input("Enter number of iterations: "))
+print(monte_carlo(no2))
 
 class TestWallis(unittest.TestCase):
     def test_low_iters(self):
